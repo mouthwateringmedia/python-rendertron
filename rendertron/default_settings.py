@@ -21,6 +21,8 @@ RENDERTRON_STORAGE = {
 # A list of patterns to include. When these match, excludes are not checked
 RENDERTRON_INCLUDE_PATTERNS = []
 
+RENDERTRON_DYNAMIC_RENDERING = False
+
 # common static file extensions on the web
 extensions = [
     "avi",

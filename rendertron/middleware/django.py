@@ -1,3 +1,5 @@
+import re
+
 from django.conf import settings
 from django.http import HttpResponse
 
@@ -36,6 +38,7 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
                     + setting("RENDERTRON_EXCLUDE_PATTERNS_EXTRA"),
                 )
             ),
+            dynamic_rendering=kwargs.get("dynamic_rendering", setting("RENDERTRON_DYNAMIC_RENDERING")),
         )
 
     def get_rendered_response(self, request):
@@ -64,8 +67,46 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
         # Also, a header would be much nicer. Like 'x-renderer' in a response
         return self.render_query_param in request.GET
 
+    def is_bot(self, request):
+        """ If dynamic rendering is enabled, only render requests from bots"""
+        bot = True
+        if self.dynamic_rendering:
+            bot_list = [
+                'bot',
+                'google',
+                'baidu',
+                'bing',
+                'msn',
+                'duckduckbot',
+                'teoma',
+                'slurp',
+                'yandex',
+                'Baiduspider',
+                'bingbot',
+                'Embedly',
+                'facebookexternalhit',
+                'LinkedInBot',
+                'outbrain',
+                'pinterest',
+                'quora link preview',
+                'rogerbot',
+                'showyoubot',
+                'Slackbot',
+                'TelegramBot',
+                'Twitterbot',
+                'vkShare',
+                'W3C_Validator',
+                'WhatsApp'
+            ]
+            bot = re.match(
+                r"|".join(bot_list),
+                request.META["HTTP_USER_AGENT"],
+                re.IGNORECASE,
+            )
+        return bot
+
     def __call__(self, request):
-        if not self.requested_by_rendertron(request) and not self.is_excluded(
+        if self.is_bot(request) and not self.requested_by_rendertron(request) and not self.is_excluded(
             request.path
         ):
             # Get the rendered response

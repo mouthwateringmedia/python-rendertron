@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/frontendr/python-rendertron/badge.svg?branch=develop)](https://coveralls.io/github/frontendr/python-rendertron?branch=develop)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-[Rendertron](https://github.com/GoogleChrome/rendertron) is a headless Chrome 
+[Rendertron](https://github.com/GoogleChrome/rendertron) is a headless Chrome
 rendering solution designed to render & serialise web pages on the fly. The
 goal of this package is to provide middleware to render a request using a
 Rendertron service and make the result available.
@@ -16,7 +16,7 @@ for it to fully render (completes initial data loading etc.) and use that
 fully built markup as a response.
 
 Besides the fact that your user will see a fully rendered application faster it
-also allows search engines to properly index the markup. 
+also allows search engines to properly index the markup.
 
 ## Installing
 
@@ -99,6 +99,7 @@ The following settings are available:
 | `RENDERTRON_INCLUDE_PATTERNS` | `[]` | A list of regular expression patterns to include. Once a pattern in this list matches the request no further checking will be done. |
 | `RENDERTRON_EXCLUDE_PATTERNS` | List of common extensions. | By default this is a list of common static file type extensions used on the web. If Django is detected it's `STATIC_URL` and `MEDIA_URL` paths are added to the list. Note that if you override this setting all defaults are gone. If you want to keep these defaults *and* add your own patterns use `RENDERTRON_EXCLUDE_PATTERNS_EXTRA`.
 | `RENDERTRON_EXCLUDE_PATTERNS_EXTRA` | `[]` | Like `RENDERTRON_EXCLUDE_PATTERNS` but will be appended to that list. |
+| `RENDERTRON_DYNAMIC_RENDERING` | `False` | Enables dynamic rendering so that only bots and crawlers will be served a prerendered page. |
 
 ## Storage
 

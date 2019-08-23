@@ -15,6 +15,7 @@ class RendertronMiddleware:
         storage_settings=None,
         include_patterns=None,
         exclude_patterns=None,
+        dynamic_rendering=False,
     ):
         """
         Initializes the middleware by storing most arguments in the instance.
@@ -28,6 +29,7 @@ class RendertronMiddleware:
         self.storage = get_storage(storage_settings)
         self.include_patterns = include_patterns or []
         self.exclude_patterns = exclude_patterns or []
+        self.dynamic_rendering = dynamic_rendering
 
     def is_excluded(self, path):
         """
