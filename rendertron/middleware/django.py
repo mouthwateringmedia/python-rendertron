@@ -71,35 +71,36 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
         """ If dynamic rendering is enabled, only render requests from bots"""
         bot = True
         if self.dynamic_rendering:
-            bot_list = [
-                'bot',
-                'google',
-                'baidu',
-                'bing',
-                'msn',
-                'duckduckbot',
-                'teoma',
-                'slurp',
-                'yandex',
-                'Baiduspider',
-                'bingbot',
-                'Embedly',
-                'facebookexternalhit',
-                'LinkedInBot',
-                'outbrain',
-                'pinterest',
-                'quora link preview',
-                'rogerbot',
-                'showyoubot',
-                'Slackbot',
-                'TelegramBot',
-                'Twitterbot',
-                'vkShare',
-                'W3C_Validator',
-                'WhatsApp'
-            ]
+            bot_list = r"|".join([
+                "spider"
+                "bot",
+                "google",
+                "baidu",
+                "bing",
+                "msn",
+                "duckduckbot",
+                "teoma",
+                "slurp",
+                "yandex",
+                "Baiduspider",
+                "bingbot",
+                "Embedly",
+                "facebookexternalhit",
+                "LinkedInBot",
+                "outbrain",
+                "pinterest",
+                "quora link preview",
+                "rogerbot",
+                "showyoubot",
+                "Slackbot",
+                "TelegramBot",
+                "Twitterbot",
+                "vkShare",
+                "W3C_Validator",
+                "WhatsApp"
+            ])
             bot = re.match(
-                r"|".join(bot_list),
+                bot_list,
                 request.META["HTTP_USER_AGENT"],
                 re.IGNORECASE,
             )
