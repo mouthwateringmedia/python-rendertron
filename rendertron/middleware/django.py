@@ -72,7 +72,7 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
         bot = True
         if self.dynamic_rendering:
             bot_list = r"|".join([
-                "spider"
+                "spider",
                 "bot",
                 "google",
                 "baidu",
@@ -97,9 +97,9 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
                 "Twitterbot",
                 "vkShare",
                 "W3C_Validator",
-                "WhatsApp"
+                "WhatsApp",
             ])
-            bot = re.match(
+            bot = re.search(
                 bot_list,
                 request.META["HTTP_USER_AGENT"],
                 re.IGNORECASE,
