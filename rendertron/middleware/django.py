@@ -49,7 +49,10 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
         :return: The response from the Rendertron service or None if it failed.
         :rtype: tuple
         """
-        response, meta = self.storage.get_stored_response(request)
+        try:
+            response, meta = self.storage.get_stored_response(request)
+        except Exception as e:
+            print(e)
         if response is not None:
             return response, meta
 
@@ -114,7 +117,10 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
             request.path
         ):
             # Get the rendered response
-            content, meta = self.get_rendered_response(request)
+            try:
+                content, meta = self.get_rendered_response(request)
+            except Exception as e:
+                print(e)
 
             if content is not None:
                 # possible keyword arguments of HttpResponse
