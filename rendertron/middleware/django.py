@@ -120,7 +120,7 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
             try:
                 content, meta = self.get_rendered_response(request)
             except Exception as e:
-                print(e)
+                content = None
 
             if content is not None:
                 # possible keyword arguments of HttpResponse
