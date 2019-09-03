@@ -71,39 +71,42 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
         """ If dynamic rendering is enabled, only render requests from bots"""
         bot = True
         if self.dynamic_rendering:
-            bot_list = r"|".join([
-                "spider",
-                "bot",
-                "google",
-                "baidu",
-                "bing",
-                "msn",
-                "duckduckbot",
-                "teoma",
-                "slurp",
-                "yandex",
-                "Baiduspider",
-                "bingbot",
-                "Embedly",
-                "facebookexternalhit",
-                "LinkedInBot",
-                "outbrain",
-                "pinterest",
-                "quora link preview",
-                "rogerbot",
-                "showyoubot",
-                "Slackbot",
-                "TelegramBot",
-                "Twitterbot",
-                "vkShare",
-                "W3C_Validator",
-                "WhatsApp",
-            ])
-            bot = re.search(
-                bot_list,
-                request.META["HTTP_USER_AGENT"],
-                re.IGNORECASE,
-            )
+            try:
+                bot_list = r"|".join([
+                    "spider",
+                    "bot",
+                    "google",
+                    "baidu",
+                    "bing",
+                    "msn",
+                    "duckduckbot",
+                    "teoma",
+                    "slurp",
+                    "yandex",
+                    "Baiduspider",
+                    "bingbot",
+                    "Embedly",
+                    "facebookexternalhit",
+                    "LinkedInBot",
+                    "outbrain",
+                    "pinterest",
+                    "quora link preview",
+                    "rogerbot",
+                    "showyoubot",
+                    "Slackbot",
+                    "TelegramBot",
+                    "Twitterbot",
+                    "vkShare",
+                    "W3C_Validator",
+                    "WhatsApp",
+                ])
+                bot = re.search(
+                    bot_list,
+                    request.META["HTTP_USER_AGENT"],
+                    re.IGNORECASE,
+                )
+            except KeyError:
+                return False
         return bot
 
     def __call__(self, request):
