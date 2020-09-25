@@ -89,7 +89,7 @@ class DjangoRendertronMiddleware(RendertronMiddleware):
                     "Baiduspider",
                     "bingbot",
                     "Embedly",
-                    "facebookexternalhit",
+                    # "facebookexternalhit",  Disabled because it can cause site to go down sending too many requests while typing url
                     "LinkedInBot",
                     "outbrain",
                     "pinterest",
