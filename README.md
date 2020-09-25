@@ -2,7 +2,7 @@
 
 > Rendertron middleware for Python applications.
 
-[![Build Status](https://travis-ci.org/frontendr/babel-plugin-transform-compress-graphql.svg?branch=master)](https://travis-ci.com/frontendr/python-rendertron.svg)
+[![Build Status](https://travis-ci.org/frontendr/python-rendertron.svg?branch=master)](https://travis-ci.com/frontendr/python-rendertron.svg)
 [![Coverage Status](https://coveralls.io/repos/github/frontendr/python-rendertron/badge.svg?branch=develop)](https://coveralls.io/github/frontendr/python-rendertron?branch=develop)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
