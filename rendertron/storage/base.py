@@ -1,4 +1,4 @@
-from rendertron.ettings.utils import import_string, dict_merge
+from rendertron.settings.utils import import_string, dict_merge
 
 
 class RendertronStorage:
