@@ -3,7 +3,7 @@ import re
 from django.conf import settings
 from django.http import HttpResponse
 
-from rendertron import default_settings
+from rendertron.settings import default_settings
 from rendertron.middleware.base import RendertronMiddleware
 
 
